@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Lista de Estudantes</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="container-fluid mt-3">
+      <div class="card">
+        <div class="card-body">
+          <!-- <h3 class="card-title">Lista de Estudantes</h3> -->
+          <div th:switch="${estudantes}" class="container">
+            <p>
+              <a href="/estudantes/cadastro" class="btn btn-primary"
+                >Cadastrar</a
+              >
+            </p>
+            <h2 th:case="null">Sem estudantes cadastrados!</h2>
+            <div th:case="*">
+              <table class="table table-hover text-center">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Opções</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="estudante : ${estudantes}">
+                    <td th:text="${estudante.nome}"></td>
+                    <td th:text="${estudante.email}"></td>
+                    <td>
+                      <a
+                        th:href="@{/estudantes/editar/{matricula}(matricula=${estudante.matricula})}"
+                        class="btn btn-warning"
+                        >Editar</a
+                      >
+                      <a
+                        th:href="@{/estudantes/deletar/{matricula}(matricula=${estudante.matricula})}"
+                        class="btn btn-danger"
+                        >Deletar</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
