@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cadastro de Estudantes</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+  </head>
+
+  <body>
+    <div class="container-fluid mt-3">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Cadastro de Estudantes</h3>
+          <form
+            action="#"
+            th:action="@{/estudantes/cadastro}"
+            th:object="${estudante}"
+            method="POST"
+          >
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input
+                type="text"
+                th:field="*{nome}"
+                class="form-control"
+                id="nome"
+                placeholder="Nome"
+              />
+              <span
+                th:if="${#fields.hasErrors('nome')}"
+                th:errors="*{nome}"
+                class="text-danger"
+              ></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                th:field="*{email}"
+                class="form-control"
+                id="email"
+                placeholder="Email"
+              />
+              <span
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}"
+                class="text-danger"
+              ></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
